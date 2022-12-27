@@ -26,7 +26,7 @@ public class BSEAPIController {
         return GetProductsResponse.ok(orderService.getProducts());
     }
 
-    @PostMapping("order")
+    @PostMapping("orders")
     public CreateOrderResponse createOrder(HttpServletRequest req, @RequestBody CreateOrderRequest reqBody) {
         try {
             return CreateOrderResponse.ok(orderService.createOrder(reqBody.productIds, reqBody.lcUserId, Util.resolveUrl(req, "/partner_api/user_created_order")));
@@ -35,7 +35,7 @@ public class BSEAPIController {
         }
     }
 
-    @GetMapping("order")
+    @GetMapping("orders/create")
     public GetOrderInfoResponse getOrderInfo(@RequestParam(required = false) Integer id) {
         try {
             return GetOrderInfoResponse.ok(orderService.getOrderInfo(id));
@@ -44,7 +44,7 @@ public class BSEAPIController {
         }
     }
 
-    @PostMapping("refund")
+    @PostMapping("{id}/refunds")
     public RefundResponse getRefund(HttpServletRequest req, @RequestBody RefundRequest reqBody) {
         try {
             OrderedItem item = orderService.getRefund(reqBody.itemId, reqBody.lcUserId, Util.resolveUrl(req, "/partner_api/item_refunded"));
@@ -54,7 +54,7 @@ public class BSEAPIController {
         }
     }
 
-    @PostMapping("nonrefundable")
+    @PostMapping("{id}/nonrefundable")
     public NonRefundableResponse makeNonRefundable(HttpServletRequest req, @RequestBody NonRefundableRequest reqBody) {
         try {
             orderService.makeNonRefundable(reqBody.orderId, Util.resolveUrl(req, "/partner_api/items_nonrefundable"));
