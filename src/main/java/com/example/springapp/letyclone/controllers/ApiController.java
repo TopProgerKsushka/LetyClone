@@ -37,7 +37,7 @@ public class ApiController {
     @Autowired
     CashbackService cashbackService;
 
-    @GetMapping(value = "get_info", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "info", produces = MediaType.APPLICATION_JSON_VALUE)
     public GetAccountInfoResponse getAccountInfo(@RequestParam(required = false) Integer userId) {
         try {
             return GetAccountInfoResponse.ok(userService.getAccountInfo(userId));
@@ -46,7 +46,7 @@ public class ApiController {
         }
     }
 
-    @GetMapping(value = "get_shops", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "shops", produces = MediaType.APPLICATION_JSON_VALUE)
     public GetShopsResponse getShops() {
         return GetShopsResponse.ok(shopService.getShops());
     }
