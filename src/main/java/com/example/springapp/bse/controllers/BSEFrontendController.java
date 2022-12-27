@@ -33,7 +33,7 @@ public class BSEFrontendController {
         return "bse/bse";
     }
 
-    @PostMapping(value = "create_order", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PostMapping(value = "orders/", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String createOrder(
             ModelMap m,
             HttpServletRequest req,
@@ -41,7 +41,7 @@ public class BSEFrontendController {
             @RequestParam String products
     ) {
         RestTemplate rt = new RestTemplate();
-        final String url = Util.resolveUrl(req, "/bse/api/create_order");
+        final String url = Util.resolveUrl(req, "/bse/api/orders/create");
         try {
             CreateOrderRequest reqBody = new CreateOrderRequest(
                     lcUserId,
@@ -68,7 +68,7 @@ public class BSEFrontendController {
         }
     }
 
-    @GetMapping("order")
+    @GetMapping("orders")
     public String order(
             ModelMap m,
             HttpServletRequest req,
@@ -86,8 +86,8 @@ public class BSEFrontendController {
                 return "bse/message";
             }
             if (resp.status.equals("ok")) {
-                m.put("order", resp.order);
-                return "bse/order";
+                m.put("orders", resp.order);
+                return "bse/orders";
             } else {
                 m.put("message", resp.error);
                 return "bse/message";
