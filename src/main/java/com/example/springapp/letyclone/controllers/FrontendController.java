@@ -29,7 +29,7 @@ public class FrontendController {
         RestTemplate rt = new RestTemplate();
 
         if (userId != null) {
-            final String url = Util.resolveUrl(req, "/api/get_info?userId={id}");
+            final String url = Util.resolveUrl(req, "/api/info?userId={id}");
             GetAccountInfoResponse resp = rt.getForObject(url, GetAccountInfoResponse.class, userId);
             if (resp != null && resp.status.equals("ok")) {
                 m.put("user_id", userId);
@@ -39,7 +39,7 @@ public class FrontendController {
             }
         }
 
-        final String shopsUrl = Util.resolveUrl(req, "/api/get_shops");
+        final String shopsUrl = Util.resolveUrl(req, "/api/shops");
         GetShopsResponse resp1 = rt.getForObject(shopsUrl, GetShopsResponse.class);
         if (resp1 == null) m.put("shops", new ArrayList<Shop>());
         else m.put("shops", resp1.shops);
