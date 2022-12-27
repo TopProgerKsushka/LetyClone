@@ -26,7 +26,7 @@ public class BSEFrontendController {
             @RequestParam(name = "lc_user_id", required = false) Integer lcUserId
     ) {
         RestTemplate rt = new RestTemplate();
-        final String url = Util.resolveUrl(req, "/bse/api/get_products");
+        final String url = Util.resolveUrl(req, "/bse/api/products");
         GetProductsResponse resp = rt.getForObject(url, GetProductsResponse.class);
         m.put("lc_user_id", lcUserId);
         m.put("products", resp.products);
