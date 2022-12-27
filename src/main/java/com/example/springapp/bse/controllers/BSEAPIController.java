@@ -44,7 +44,7 @@ public class BSEAPIController {
         }
     }
 
-    @PostMapping("{id}/refunds")
+    @PostMapping("refunds")
     public RefundResponse getRefund(HttpServletRequest req, @RequestBody RefundRequest reqBody) {
         try {
             OrderedItem item = orderService.getRefund(reqBody.itemId, reqBody.lcUserId, Util.resolveUrl(req, "/partner_api/item_refunded"));
@@ -54,7 +54,7 @@ public class BSEAPIController {
         }
     }
 
-    @PostMapping("{id}/nonrefundable")
+    @PostMapping("nonrefundable")
     public NonRefundableResponse makeNonRefundable(HttpServletRequest req, @RequestBody NonRefundableRequest reqBody) {
         try {
             orderService.makeNonRefundable(reqBody.orderId, Util.resolveUrl(req, "/partner_api/items_nonrefundable"));
