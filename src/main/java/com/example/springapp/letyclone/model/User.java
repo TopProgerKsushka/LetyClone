@@ -17,6 +17,8 @@ public class User {
     private int id;
 
     @Column(nullable = false, unique = true)
+    @NotEmpty(message = "Name should not be empty")
+    @Size(min = 2, max = 30, message = "Name should be between 2 and 100 characters")
     private String username;
 
     @Column(nullable = false)
