@@ -9,15 +9,19 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotEmpty(message = "should not be empty")
     @Column(nullable = false)
     private Double cashback;
 
+    @NotEmpty(message = "Name should not be empty")
     @Column(nullable = false)
     private Boolean canBeRefunded;
 
+    @NotEmpty(message = "Name should not be empty")
     @Column(nullable = false)
     private Boolean refunded;
 
+    @NotEmpty(message = "Name should not be empty")
     @Column(nullable = false)
     private Integer shopOrderedItemId;
     @ManyToOne(cascade = CascadeType.ALL)
