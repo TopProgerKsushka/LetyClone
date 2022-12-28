@@ -1,22 +1,14 @@
 package com.example.springapp.bse.services;
 
-import com.example.springapp.bse.messages.ItemRefundedRequest;
-import com.example.springapp.bse.messages.ItemRefundedResponse;
-import com.example.springapp.bse.messages.ItemsNonrefundableRequest;
-import com.example.springapp.bse.messages.ItemsNonrefundableResponse;
-import com.example.springapp.letyclone.messages.GetUserRequest;
-import com.example.springapp.letyclone.messages.GetUserResponse;
 import com.example.springapp.letyclone.messages.UserCreatedOrderRequest;
-import com.example.springapp.letyclone.messages.UserCreatedOrderResponse;
 import com.example.springapp.letyclone.model.*;
-import org.apache.tomcat.util.codec.binary.Base64;
+import com.example.springapp.letyclone.repository.ItemRepository;
+import com.example.springapp.letyclone.repository.ShopRepository;
+import com.example.springapp.letyclone.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.transaction.Transactional;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Service

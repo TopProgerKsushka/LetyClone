@@ -1,20 +1,15 @@
 package com.example.springapp.letyclone.controllers;
 
-import com.example.springapp.bse.messages.CreateOrderResponse;
 import com.example.springapp.bse.services.CashbackService;
-import com.example.springapp.bse.services.OrderService;
 import com.example.springapp.bse.services.ShopService;
 import com.example.springapp.bse.services.UserService;
-import com.example.springapp.letyclone.AccountInfo;
 import com.example.springapp.letyclone.messages.*;
-import com.example.springapp.letyclone.model.*;
+import com.example.springapp.letyclone.repository.ItemRepository;
+import com.example.springapp.letyclone.repository.ShopRepository;
+import com.example.springapp.letyclone.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.*;
-import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")

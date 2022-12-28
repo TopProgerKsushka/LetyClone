@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/bse")
 public class BSEFrontendController {
-    @GetMapping("users/{lcUserId}")
+    @GetMapping("")
     public String bse(
             ModelMap m,
             HttpSession s,
@@ -26,14 +26,14 @@ public class BSEFrontendController {
             @RequestParam(name = "lc_user_id", required = false) Integer lcUserId
     ) {
         RestTemplate rt = new RestTemplate();
-        final String url = Util.resolveUrl(req, "/bse/api/users/{lcUserId}/products");
+        final String url = Util.resolveUrl(req, "/bse/api/products");
         GetProductsResponse resp = rt.getForObject(url, GetProductsResponse.class);
         m.put("lc_user_id", lcUserId);
         m.put("products", resp.products);
         return "bse/bse";
     }
 
-    @PostMapping(value = "/users/{lcUserId}/orders/create", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PostMapping(value = "create_order", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String createOrder(
             ModelMap m,
             HttpServletRequest req,
@@ -41,7 +41,7 @@ public class BSEFrontendController {
             @RequestParam String products
     ) {
         RestTemplate rt = new RestTemplate();
-        final String url = Util.resolveUrl(req, "/bse/api/users/{lcUserId}/orders/create");
+        final String url = Util.resolveUrl(req, "/bse/api/orders");
         try {
             CreateOrderRequest reqBody = new CreateOrderRequest(
                     lcUserId,
@@ -68,7 +68,7 @@ public class BSEFrontendController {
         }
     }
 
-    @GetMapping("users/{lcUserId}/orders/{orderId}")
+    @GetMapping("order")
     public String order(
             ModelMap m,
             HttpServletRequest req,
@@ -76,7 +76,7 @@ public class BSEFrontendController {
             @RequestParam(name = "id", required = false) Integer orderId
     ) {
         RestTemplate rt = new RestTemplate();
-        final String url = Util.resolveUrl(req, "bse/api/users/{lcUserId}/get_order_info?id={id}");
+        final String url = Util.resolveUrl(req, "bse/api/orders/info/?id={id}");
 
         try {
             GetOrderInfoResponse resp = rt.getForObject(
@@ -86,8 +86,8 @@ public class BSEFrontendController {
                 return "bse/message";
             }
             if (resp.status.equals("ok")) {
-                m.put("orders", resp.order);
-                return "bse/orders";
+                m.put("order", resp.order);
+                return "bse/order";
             } else {
                 m.put("message", resp.error);
                 return "bse/message";
@@ -98,14 +98,14 @@ public class BSEFrontendController {
         }
     }
 
-    @GetMapping("users/{lcUserId}/orders")
+    @GetMapping("orders")
     public String orders(
             ModelMap m,
             HttpServletRequest req,
             @RequestParam(name = "lc_user_id", required = false) Integer lcUserId
     ) {
         RestTemplate rt = new RestTemplate();
-        final String url = Util.resolveUrl(req, "bse/api/users/{lcUserId}/orders");
+        final String url = Util.resolveUrl(req, "bse/api/orders");
 
         try {
             GetOrdersResponse resp = rt.getForObject(
@@ -127,7 +127,7 @@ public class BSEFrontendController {
         }
     }
 
-    @PostMapping(value = "users/{lcUserId}/items/{itemId}/refund", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PostMapping(value = "refund", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String refund(
             ModelMap m,
             HttpServletRequest req,
@@ -135,7 +135,7 @@ public class BSEFrontendController {
             @RequestParam(name = "item_id", required = false) Integer itemId
     ) {
         RestTemplate rt = new RestTemplate();
-        final String url = Util.resolveUrl(req, "bse/api/users/{lcUserId}/items/{itemId}/refund");
+        final String url = Util.resolveUrl(req, "bse/api/refunds");
 
         try {
 
@@ -155,7 +155,7 @@ public class BSEFrontendController {
         }
     }
 
-    @PostMapping(value = "users/{lcUserId}/orders/{orderId}/nonrefundable", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PostMapping(value = "nonrefundable", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String nonrefundable(
             ModelMap m,
             HttpServletRequest req,
@@ -163,7 +163,7 @@ public class BSEFrontendController {
             @RequestParam(name = "order_id", required = false) Integer orderId
     ) {
         RestTemplate rt = new RestTemplate();
-        final String url = Util.resolveUrl(req, "bse/api/users/{lcUserId}/orders/{orderId}/nonrefundable");
+        final String url = Util.resolveUrl(req, "bse/api/nonrefundable");
 
         try {
 

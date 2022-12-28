@@ -6,13 +6,14 @@ import com.example.springapp.bse.messages.ItemsNonrefundableRequest;
 import com.example.springapp.bse.messages.ItemsNonrefundableResponse;
 import com.example.springapp.bse.services.CashbackService;
 import com.example.springapp.letyclone.messages.*;
-import com.example.springapp.letyclone.model.*;
+import com.example.springapp.letyclone.repository.ItemRepository;
+import com.example.springapp.letyclone.repository.ShopRepository;
+import com.example.springapp.letyclone.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.List;
 
 @RestController
 @RequestMapping("/partner_api")
@@ -30,7 +31,7 @@ public class PartnerAPI {
     @Autowired
     CashbackService cashbackService;
 
-    @PostMapping(value = "user_created_order", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "user/order", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public UserCreatedOrderResponse userCreatedOrder(@RequestBody UserCreatedOrderRequest req, Principal principal) {
         try {
             cashbackService.userCreatedOrder(principal.getName(), req.userId, req.items);
@@ -40,7 +41,7 @@ public class PartnerAPI {
         }
     }
 
-    @PostMapping(value = "item_refunded", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "item/refunded", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ItemRefundedResponse itemRefunded(@RequestBody ItemRefundedRequest req, Principal principal) {
         try {
             cashbackService.itemRefunded(req.userId, principal.getName(), req.shopOrderedItemId);
@@ -50,7 +51,7 @@ public class PartnerAPI {
         }
     }
 
-    @PostMapping(value = "items_nonrefundable", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "items/nonrefundable", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ItemsNonrefundableResponse itemsNonrefundable(@RequestBody ItemsNonrefundableRequest req, Principal principal) {
         try {
             cashbackService.itemsNonrefundable(req.userId, principal.getName(), req.itemIds);

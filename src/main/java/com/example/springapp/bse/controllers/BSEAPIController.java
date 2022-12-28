@@ -29,13 +29,13 @@ public class BSEAPIController {
     @PostMapping("orders")
     public CreateOrderResponse createOrder(HttpServletRequest req, @RequestBody CreateOrderRequest reqBody) {
         try {
-            return CreateOrderResponse.ok(orderService.createOrder(reqBody.productIds, reqBody.lcUserId, Util.resolveUrl(req, "/partner_api/user_created_order")));
+            return CreateOrderResponse.ok(orderService.createOrder(reqBody.productIds, reqBody.lcUserId, Util.resolveUrl(req, "/partner_api/user/order")));
         } catch (RuntimeException ex) {
             return CreateOrderResponse.error(ex.getLocalizedMessage());
         }
     }
 
-    @GetMapping("orders/create")
+    @GetMapping("orders/info")
     public GetOrderInfoResponse getOrderInfo(@RequestParam(required = false) Integer id) {
         try {
             return GetOrderInfoResponse.ok(orderService.getOrderInfo(id));
@@ -47,7 +47,7 @@ public class BSEAPIController {
     @PostMapping("refunds")
     public RefundResponse getRefund(HttpServletRequest req, @RequestBody RefundRequest reqBody) {
         try {
-            OrderedItem item = orderService.getRefund(reqBody.itemId, reqBody.lcUserId, Util.resolveUrl(req, "/partner_api/item_refunded"));
+            OrderedItem item = orderService.getRefund(reqBody.itemId, reqBody.lcUserId, Util.resolveUrl(req, "/partner_api/item/refunded"));
             return RefundResponse.ok(item, item.getOrder().getId());
         } catch (RuntimeException ex) {
             return RefundResponse.error(ex.getLocalizedMessage());
@@ -57,7 +57,7 @@ public class BSEAPIController {
     @PostMapping("nonrefundable")
     public NonRefundableResponse makeNonRefundable(HttpServletRequest req, @RequestBody NonRefundableRequest reqBody) {
         try {
-            orderService.makeNonRefundable(reqBody.orderId, Util.resolveUrl(req, "/partner_api/items_nonrefundable"));
+            orderService.makeNonRefundable(reqBody.orderId, Util.resolveUrl(req, "/partner_api/items/nonrefundable"));
             return NonRefundableResponse.ok(reqBody.orderId);
         } catch (RuntimeException ex) {
             return NonRefundableResponse.error(ex.getLocalizedMessage());

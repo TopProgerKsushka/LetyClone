@@ -1,5 +1,7 @@
-package com.example.springapp.letyclone.model;
+package com.example.springapp.letyclone.repository;
 
+import com.example.springapp.letyclone.model.Item;
+import com.example.springapp.letyclone.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

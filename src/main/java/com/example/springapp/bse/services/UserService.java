@@ -1,19 +1,14 @@
 package com.example.springapp.bse.services;
 
-import com.example.springapp.bse.model.OrderedItemRepository;
 import com.example.springapp.letyclone.AccountInfo;
-import com.example.springapp.letyclone.messages.*;
 import com.example.springapp.letyclone.model.*;
-import org.apache.tomcat.util.codec.binary.Base64;
+import com.example.springapp.letyclone.repository.ItemRepository;
+import com.example.springapp.letyclone.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 @Service
 public class UserService {

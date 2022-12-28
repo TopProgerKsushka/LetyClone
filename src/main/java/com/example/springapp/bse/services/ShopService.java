@@ -1,7 +1,7 @@
 package com.example.springapp.bse.services;
 
 import com.example.springapp.letyclone.model.Shop;
-import com.example.springapp.letyclone.model.ShopRepository;
+import com.example.springapp.letyclone.repository.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
