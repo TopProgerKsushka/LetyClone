@@ -104,6 +104,19 @@ public class FrontendController {
         }
         return new RedirectView("/");
     }
+    
+    @PostMapping()
+    public String postRegister(@ModelAttribute("user") @Valid User user, BindingResult bindingResult){
+        
+         if (bindingResult.hasErrors())
+            return "/";
+
+//         Метод для сохранения и потом реирект
+//         И куда редиректит изменить 
+        personDAO.save(person);
+        return "redirect:/people";
+    }
+    }
 
     @GetMapping(value = {"/balance", "balance.html"})
     public String balance(
