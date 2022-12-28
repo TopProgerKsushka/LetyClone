@@ -18,15 +18,17 @@ public class User {
 
     @Column(nullable = false, unique = true)
     @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 30, message = "Name should be between 2 and 100 characters")
+    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
     private String username;
 
+     @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
     @Column(nullable = false)
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     Set<Item> orderedItems;
 
+    @NotEmpty(message = "Balance should not be empty")
     @Column(nullable = false)
     Double balance;
 
