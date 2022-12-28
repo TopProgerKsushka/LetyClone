@@ -96,7 +96,7 @@ public class FrontendController {
             } else {
                 if (resp.status.equals("ok")) {
                     s.setAttribute("userId", resp.userId);
-                    m.addFlashAttribute("message", "You've been successfully registered");
+                    m.addFlashAttribute("message", "Вы успешно зарегестрировались");
                 } else {
                     m.addFlashAttribute("message", resp.error);
                 }
