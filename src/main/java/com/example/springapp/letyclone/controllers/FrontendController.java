@@ -63,8 +63,6 @@ public class FrontendController {
                 if (resp.status.equals("ok")) {
                     s.setAttribute("userId", resp.userId);
                 } else {
-                    System.out.println("Even here, what the hell?");
-                    System.out.println(resp.error);
                     m.addFlashAttribute("message", resp.error);
                 }
             }
