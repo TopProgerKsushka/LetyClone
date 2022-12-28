@@ -92,9 +92,9 @@
             <span class="form-caption">Регистрация</span>
             <form method="post" action="/register">
                 <input type="text" name="email" class="form-input"/>
-                <span class="float-label">Введи свой email</span>
+                <span class="float-label">Введите свой email</span>
                 <input type="password" name="password" class="form-input"/>
-                <span class="float-label">Придумай пароль</span>
+                <span class="float-label">Придумайте пароль</span>
                 <input type="submit" class="form-button" value="Зарегистрироваться"/>
             </form>
         </div>
